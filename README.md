@@ -1,7 +1,7 @@
 # Enemy Color
 Enemy Color es un algoritmo de regresión lineal diseñado para poder encontrar un contraste de un color (o su inverso).
 
-##Uso
+## Uso
 Despues de descargar el proyecto y añadirlo al suyo debe importarlo de esta forma
 ```python
 from enemy_color import EnemyColor
