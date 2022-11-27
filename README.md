@@ -11,7 +11,7 @@ color = EnemyColor()
 color.predict(array([150, 130, 0]))
 ```
 
-La clase `EnemyColor` puede recibir un parámetro `default_load` de valor booleano que especificará si se usa un modelo ya entrenado o se preparará uno para el entrenamiento.
+La clase `EnemyColor` puede recibir un parámetro `default_load` de valor booleano que especificará si se usa un modelo ya entrenado o se preparará uno para el entrenamiento. SIempre que se quiera reentrenar al modelo, ya sea con los datos existentes o propios datos se deberá especificar `default_load=False`.
 
 En caso desee entrenar el modelo desde 0 debe hacer lo siguiente:
 ```python
@@ -20,20 +20,19 @@ from numpy import array
 
 color = EnemyColor(default_load=False)
 #cargamos los datos del csv por default
-color.load_data_csv()
+color.load_data_csv() # si no se especifica ruta del csv se tomará el csv propio del modelo
 #entrenamos el modelo
 color.train(save=True)  #save indica si el modelo será guardado
 color.predict(array([100, 130, 0])) #predecimos
 ```
-En caso quiera usar un set de datos propios deberá especificar la ruta, para ello debes cambiar el atributo `path_colors` que contiene la ruta del csv de colores utilizado para el modelo original. 
+En caso quiera usar un set de datos propios deberá especificar la ruta, para ello se pasa el parámetro `path_csv` que especifica la ruta del csv de colores que se utilizará para el entrenamiento del modelo. Asímismo, se puede especificar en el método `train` el paraémtro `score` que indica el score mínimo que debe alcanzar el modelo en su entrenameinto (por defecto es `.25`). 
 
 ```python
 from enemy_color import EnemyColor
 from numpy import array
 
 color = EnemyColor(default_load=False)
-color.path_colors = "ruta_de_tu_archio.csv"
-color.load_data_csv() #cargamos los datos (se usará la ruta proporcionada)
+color.load_data_csv("ruta_de_tu_archio.csv") #cargamos los datos desde la ruta proporcionada
 #entrenamos el modelo
 color.train(save=True)  #save indica si el modelo será guardado
 color.predict(array([100, 130, 0])) #predecimos
